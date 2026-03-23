@@ -82,7 +82,7 @@ jobs:
         uses: aquasecurity/trivy-action@0.35.0
         with:
           scan-type: 'fs'
-          scan-ref: 'devops-app/'
+          scan-ref: '.'
           severity: 'HIGH,CRITICAL'
           exit-code: '1'
           format: 'table'
