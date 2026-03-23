@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-          cache-dependency-path: devops-app/package-lock.json
+          cache-dependency-path: '**/package-lock.json'
       - run: cd devops-app && npm ci
       - name: Run tests
         run: |
