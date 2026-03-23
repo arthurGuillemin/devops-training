@@ -47,6 +47,28 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
+    # Smoke test
+  smoke-test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t devops-app:smoke ./app
+
+      - name: Start container
+        run: docker run -d -p 3000:3000 --name smoke-app devops-app:smoke
+
+      - name: Check /health
+        run: |
+          curl --fail http://localhost:3000/health
+
+      - name: Check /metrics
+        run: |
+          curl --fail http://localhost:3000/metrics
+
+
   # Stage 3 : Scan de sécurité
   security:
     needs: build
