@@ -1,0 +1,6 @@
+base_packages:
+  - curl
+  - wget
+  - vim
+  - htop
+  - net-tools
